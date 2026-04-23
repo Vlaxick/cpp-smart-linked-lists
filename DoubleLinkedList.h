@@ -49,6 +49,18 @@ class DoubleLinkedList {
         tail = newNode;
         listSize++;
     }
+
+    removeLast(){
+        if (head == nullptr) {throw std::runtime_error("List is empty");}
+        if (head == tail) {
+            head = nullptr;
+            tail = nullptr;
+        } else {
+            tail = tail->prev.lock();
+            tail->next = nullptr;
+        }
+        listSize--;
+    }
 };
 
     
