@@ -15,6 +15,15 @@ class DoubleLinkedList {
             removeFirst();
         }
     }
+
+    removeFirst(){
+        if (head == nullptr) {throw std::runtime_error("List is empty");}
+        head = head->next;
+        if (head != nullptr) {
+            head->prev.reset();
+        }
+        listSize--;
+    }
 };
 
     
