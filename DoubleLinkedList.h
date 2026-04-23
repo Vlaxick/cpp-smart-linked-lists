@@ -24,6 +24,19 @@ class DoubleLinkedList {
         }
         listSize--;
     }
+
+    pushFront(T value) {
+        auto newNode = std::make_shared<Node<T>>(value);
+        if (head == nullptr) {
+            head = newNode;
+            tail = newNode;
+        } else {
+            head->prev = newNode;
+            newNode->next = head;
+            head = newNode;
+        }
+        listSize++;
+    }
 };
 
     
