@@ -41,4 +41,18 @@ class SingleLinkedList {
         current->next = newNode;
         listSize++;
     }
+
+    void removeLast(){
+        if (head == nullptr) {throw std::runtime_error("List is empty");}
+        if (head->next == nullptr) {
+            removeFirst();
+            return;
+        }
+        auto current = head;
+        while (current->next->next != nullptr) {
+            current = current->next;
+        }
+        current->next = nullptr;
+        listSize--;
+    }
 };
