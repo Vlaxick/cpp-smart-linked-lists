@@ -13,3 +13,14 @@ struct Node {
         //std::cout << "Node was destroyed" << std::endl;
     }
 };
+
+template <typename T>
+struct SingleNode {
+    T data;
+    std::shared_ptr<SingleNode<T>> next;
+
+    SingleNode(T value) : data(value), next(nullptr) {}
+    ~SingleNode(){
+        //std::cout << "Node was destroyed" << std::endl;
+    }
+};
