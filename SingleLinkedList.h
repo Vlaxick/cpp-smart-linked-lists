@@ -55,4 +55,15 @@ class SingleLinkedList {
         current->next = nullptr;
         listSize--;
     }
+
+    T at(int index) {
+        if (index < 0 || index >= listSize){
+            throw std::out_of_range ("Index out of range");
+        }
+        auto current = head;
+        for (int i = 0; i<index; i++){
+            current = current->next;
+        }
+        return current->data;
+    }
 };
