@@ -27,4 +27,18 @@ class SingleLinkedList {
         head = newNode;
         listSize++;
     }
+
+    void pushBack (T value) {
+        if (head == nullptr) {
+            pushFront(value);
+            return;
+        }
+        auto newNode = std::make_shared<SingleNode<T>>(value);
+        auto current = head;
+        while (current->next != nullptr) {
+            current = current->next;
+        }
+        current->next = newNode;
+        listSize++;
+    }
 };
