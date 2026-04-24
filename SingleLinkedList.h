@@ -126,5 +126,17 @@ class SingleLinkedList {
         return false;
     }
 
-    
+    friend std::ostream& operator<<(std::ostream& os, const SingleLinkedList<T>& list) {
+    os << "[ ";
+    auto current = list.head;
+    while (current != nullptr) {
+        os << current->data;
+        if (current->next != nullptr) {
+            os << " -> ";
+        }
+        current = current->next;
+    }
+    os << " ]";
+    return os;
+   }
 };
