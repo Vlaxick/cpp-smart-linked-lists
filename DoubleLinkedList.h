@@ -139,7 +139,14 @@ class DoubleLinkedList {
         return false;
     }
 
-    
+    friend std::ostream& operator<<(std::ostream& os, const DoubleLinkedList<T>& list) {
+        std::shared_ptr<Node<T>> current = list.head;
+        while (current != nullptr) {
+            os << current->data << " <-> ";
+            current = current->next;
+        }
+        return os;
+    }
 };
 
     
