@@ -14,4 +14,17 @@ class SingleLinkedList {
             removeFirst();
         }
     }
+
+    void removeFirst(){
+        if (head == nullptr) {throw std::runtime_error("List is empty");}
+        head = head->next;
+        listSize--;
+    }
+
+    void pushFront(T value) {
+        auto newNode = std::make_shared<SingleNode<T>>(value);
+        newNode->next = head;
+        head = newNode;
+        listSize++;
+    }
 };
