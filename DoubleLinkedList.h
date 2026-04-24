@@ -146,7 +146,7 @@ class DoubleLinkedList {
             current = current->next;
         }
         return os;
-    }
+    };
 };
 
     
