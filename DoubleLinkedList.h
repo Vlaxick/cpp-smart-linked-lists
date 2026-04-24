@@ -128,16 +128,18 @@ class DoubleLinkedList {
         }
     }
 
-        //bool search (T value) const {
-            //std::shared_ptr<Node<T>> current = head;
-            //while (current != nullptr) {
-                //if (current->data == value) {
-                 //   return true;
-                //}
-               // current = current->next;
-            //}
-          //  return false;
-        //}
+    bool search (T value) const {
+        std::shared_ptr<Node<T>> current = head;
+        while (current != nullptr) {
+            if (current->data == value) {
+                return true;
+            }
+            current = current->next;
+        }
+        return false;
+    }
+
+    
 };
 
     
