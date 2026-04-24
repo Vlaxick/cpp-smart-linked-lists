@@ -105,6 +105,26 @@ class SingleLinkedList {
     }
     previous->next = previous->next->next;
     listSize--;
- }
- 
+    }
+
+    int size() const {
+        return listSize;
+    }
+
+    bool isEmpty() const {
+        return listSize == 0;
+    }
+
+    bool search(T value) const {
+        auto current = head;
+        while (current != nullptr) {
+            if (current->data == value) {
+                return true;
+            }
+            current = current->next;
+        }
+        return false;
+    }
+
+    
 };
