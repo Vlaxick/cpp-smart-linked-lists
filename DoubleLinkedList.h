@@ -115,6 +115,18 @@ class DoubleLinkedList {
             after->prev = before;
             listSize--;
         }
+
+        int size() const {
+            return listSize;
+        }
+
+        bool isEmpty() const {
+            if (listSize == 0) {
+                return true;
+            }else {
+                return false;
+            }
+        }
 };
 
     
