@@ -16,7 +16,7 @@ class DoubleLinkedList {
         }
     }
 
-    removeFirst(){
+    void removeFirst(){
         if (head == nullptr) {throw std::runtime_error("List is empty");}
         head = head->next;
         if (head != nullptr) {
@@ -25,7 +25,7 @@ class DoubleLinkedList {
         listSize--;
     }
 
-    pushFront(T value) {
+    void pushFront(T value) {
         auto newNode = std::make_shared<Node<T>>(value);
         if (head == nullptr) {
             head = newNode;
@@ -38,7 +38,7 @@ class DoubleLinkedList {
         listSize++;
     }
 
-    pushBack (T value) {
+    void pushBack (T value) {
         if (head == nullptr) {
             pushFront(value);
             return;
@@ -50,7 +50,7 @@ class DoubleLinkedList {
         listSize++;
     }
 
-    removeLast(){
+    void removeLast(){
         if (head == nullptr) {throw std::runtime_error("List is empty");}
         if (head == tail) {
             head = nullptr;
@@ -62,7 +62,7 @@ class DoubleLinkedList {
         listSize--;
     }
 
-    at(int index) {
+    T at(int index) {
         if (index >= listSize){
             throw std::out_of_range ("Index out of range");
         }
@@ -73,7 +73,7 @@ class DoubleLinkedList {
         return current->data;
     }
 
-    insertAt(int index, T value) {
+    void insertAt(int index, T value) {
        if (index < 0 || index > listSize) {throw std::out_of_range("Index out of range");}
        if (index == 0) {
            pushFront(value);
@@ -95,38 +95,49 @@ class DoubleLinkedList {
          listSize++;
         }
 
-        removeAt(int index){
-            if (index < 0 ||index >= listSize) {throw std::out_of_range("Index out of range");}
-            if (index== 0){
-                removeFirst();
-                return;
-            }
-            if (index == listSize - 1) {
-                removeLast();
-                return;
-            }
-            std::shared_ptr<Node<T>> target = head;
-            for (int i = 0; i < index; i++) {
-                target = target->next;
-            }
-            auto before = target->prev.lock();
-            auto after = target->next;
-            before->next = after;
-            after->prev = before;
-            listSize--;
+    void removeAt(int index){
+        if (index < 0 ||index >= listSize) {throw std::out_of_range("Index out of range");}
+        if (index== 0){
+            removeFirst();            
+            return;
         }
+        if (index == listSize - 1) {
+            removeLast();
+            return;
+        }
+        std::shared_ptr<Node<T>> target = head;
+        for (int i = 0; i < index; i++) {
+            target = target->next;
+        }
+        auto before = target->prev.lock();
+        auto after = target->next;
+        before->next = after;
+        after->prev = before;
+        listSize--;
+    }
 
-        int size() const {
-            return listSize;
-        }
+    int size() const {
+        return listSize;
+    }
 
-        bool isEmpty() const {
-            if (listSize == 0) {
-                return true;
-            }else {
-                return false;
-            }
+    bool isEmpty() const {
+        if (listSize == 0) {
+             return true;
+        }else {
+             return false;
         }
+    }
+
+        //bool search (T value) const {
+            //std::shared_ptr<Node<T>> current = head;
+            //while (current != nullptr) {
+                //if (current->data == value) {
+                 //   return true;
+                //}
+               // current = current->next;
+            //}
+          //  return false;
+        //}
 };
 
     
