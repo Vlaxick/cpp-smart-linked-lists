@@ -95,6 +95,26 @@ class DoubleLinkedList {
          listSize++;
         }
 
+        removeAt(int index){
+            if (index < 0 ||index >= listSize) {throw std::out_of_range("Index out of range");}
+            if (index== 0){
+                removeFirst();
+                return;
+            }
+            if (index == listSize - 1) {
+                removeLast();
+                return;
+            }
+            std::shared_ptr<Node<T>> target = head;
+            for (int i = 0; i < index; i++) {
+                target = target->next;
+            }
+            auto before = target->prev.lock();
+            auto after = target->next;
+            before->next = after;
+            after->prev = before;
+            listSize--;
+        }
 };
 
     
