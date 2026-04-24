@@ -72,6 +72,29 @@ class DoubleLinkedList {
         }
         return current->data;
     }
+
+    insertAt(int index, T value) {
+       if (index < 0 || index > listSize) {throw std::out_of_range("Index out of range");}
+       if (index == 0) {
+           pushFront(value);
+           return;
+       }
+       if (index == listSize) {
+           pushBack(value);
+           return;
+       }
+       auto current = head;
+       for (int i = 0; i < index; i++) {
+           current = current->next;
+       }
+         auto newNode = std::make_shared<Node<T>>(value);
+         newNode -> next = current;
+         newNode -> prev = current->prev;
+         current->prev.lock()->next = newNode;
+         current->prev = newNode;
+         listSize++;
+        }
+
 };
 
     
