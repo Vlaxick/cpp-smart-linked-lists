@@ -86,4 +86,25 @@ class SingleLinkedList {
         current->next = newNode;
         listSize++;
     }
+
+    void removeAt(int index) {
+    if (index < 0 || index >= listSize) {
+        throw std::out_of_range("Index out of range");
+    }
+    if (index == 0) {
+        removeFirst();
+        return;
+    }
+    if (index == listSize - 1) {
+        removeLast();
+        return;
+    }
+    auto previous = head;
+    for (int i = 0; i < index - 1; i++) {
+        previous = previous->next;
+    }
+    previous->next = previous->next->next;
+    listSize--;
+ }
+ 
 };
